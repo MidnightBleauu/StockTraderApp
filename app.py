@@ -5,9 +5,8 @@ import requests
 app = Flask(__name__)
 
 # Set a secret key for session management (important for using `flash` and handling user sessions)
-# VPAUA9QHVCN997CN - Alpha Vantage API KEY
 
-app.secret_key = 'patepram'  # secret key
+app.secret_key = ''  # secret key
 
 
 
