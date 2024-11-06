@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Midnight Trade - Login</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    {% if redirect %}
+    <meta http-equiv="refresh" content="3;url={{ url_for('dashboard') }}">
+    {% endif %}
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login to Your Account</h2>
+
+        <form class="login-form" method="POST" action="/login">
+            <div class="login-form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="hello@example.com" required>
+            </div>
+            <div class="login-form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            <p><a href="/account_creation">Create a New Account</a></p>
+            <div class="login-button">
+                <button type="submit">Sign In</button>
+            </div>
+        </form>
+
+        <!-- Redirection message -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == 'login_success' %}
+                        <p class="login-message">{{ message }}</p>
+                    {% elif category == 'account_created' %}
+                        <p class="account-message">{{ message }}</p>
+                    {% elif category == 'logout_success' %}
+                        <p class="logout-message">{{ message }}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

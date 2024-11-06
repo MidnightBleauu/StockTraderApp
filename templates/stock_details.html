@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Midnight Trade - Stock Details</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/stockdetails.js" defer></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="top-nav">
+        <div class="nav-logo">The Midnight Trade</div>
+        <div class="nav-links">
+            <a href="/accounts">Accounts</a>
+            <a href="/dashboard">Summary</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/stocks">Stocks</a>
+        </div>
+        <div class="nav-right">
+            <input type="text" placeholder="Search for stocks...">
+            <a href="/logout" class="logout-button">Log Out</a>
+        </div>
+    </div>
+
+    <div class="stock-details-container">
+        <div class="stock-info">
+            <h1 id="stockName">{{ stock['longName'] }}</h1>
+            <p>Current Price: ${{ stock['currentPrice'] }}</p>
+            <p>Change: {{ stock['changePercent'] }}%</p>
+            <p>Market Close Price: ${{ stock['closePrice'] }} | Change Price: ${{ stock['changePrice'] }}</p>
+            <p>Data Last Updated: {{ stock['lastUpdated'] }}</p>
+        </div>
+
+         <div class="chart-container">
+            <canvas id="stockChart"></canvas>
+         </div>
+
+
+ <div class="purchase-stock-container">
+    <h3>Purchase Stock</h3>
+    <label for="action">Action:</label>
+    <select id="action">
+        <option value="buy">Buy</option>
+        <option value="sell">Sell</option>
+    </select>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" placeholder="Enter quantity">
+
+    <label for="order-type">Order Type:</label>
+    <select id="order-type">
+        <option value="market">Market</option>
+        <option value="limit">Limit</option>
+        <option value="stop">Stop</option>
+    </select>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" placeholder="Enter price">
+
+    <label for="timing">Timing:</label>
+    <input type="date" id="timing">
+
+    <button id="review-order">Review Order</button>
+
+    <div class="disclaimer">
+        <p>Disclaimer: Stock prices can fluctuate, and alerts may not reflect real-time data. Fees may apply to trades.</p>
+    </div>
+    </div>
+
+</body>
+</html>

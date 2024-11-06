@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Account - The Midnight Trade</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="fullForm">
+        <h2>Create Your Account</h2>
+        <form method="POST" action="/account_creation">
+            <div class="form-group">
+                <div class="form">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" placeholder="First Name">
+                </div>
+                <div class="form">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" placeholder="Last Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form">
+                    <label for="user_email">Email Address:</label>
+                    <input type="email" id="user_email" name="email" placeholder="hello@example.com">
+                </div>
+                 <div class="form">
+                    <label for="confirm_email">Confirm Email:</label>
+                    <input type="email" id="confirm_email" name="confirm_email" placeholder="Confirm Email Address">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="form">
+                    <label for="password-repeat">Confirm Password:</label>
+                    <input type="password" id="password-repeat" name="password_repeat" placeholder="Confirm Password" required>
+                </div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
