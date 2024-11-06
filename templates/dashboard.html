@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Midnight Trade - Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/script.js" defer></script>
+</head>
+<body>
+    <div class="top-nav">
+        <div class="nav-logo">The Midnight Trade</div>
+        <div class="nav-links">
+           <a href="/accounts">Accounts</a>
+            <a href="/dashboard">Summary</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/stocks">Stocks</a>
+        </div>
+        <div class="nav-right">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for stocks...">
+                <ul id="suggestion-box" class="suggestion-box"></ul>
+            </div>
+            <a href="/logout" class="logout-button">Log Out</a>
+        </div>
+    </div>
+     <div class="dashboard-main-container">
+        <div class="top-summary">
+            <div class="summary-item">Portfolio Balance: $100,000,000</div>
+            <div class="summary-item">Available Funds: $156,353,000</div>
+            <div class="summary-item">Cash + Investments: $90,500,000</div>
+            <div class="summary-item">Market Value: $120,000,000</div>
+            <div class="summary-item">Day Change: +$12,500</div>
+            <div class="summary-item">Gains/Loss: +$25,000</div>
+        </div>
+
+        <div class="main-content">
+            <div class="left-panel">
+                <h2>Investment Performance</h2>
+                <div class="investment-performance">
+                    <p>Chart Placeholder</p>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <h2>Global Market Trends</h2>
+                <div class="global-market-data">
+                    <ul>
+                        <li>DOW: 42,931.60 -334.31</li>
+                        <li>S&P 500: 5,853.98 -10.69</li>
+                        <li>NASDAQ: 18,540.00 +50.45</li>
+                        <li>Gold: 2735.00 -3.60</li>
+                        <li>Oil: 70.46 -0.10</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-content">
+            <div class="recent-transactions">
+                <h2>Recent Transactions</h2>
+                <ul>
+                    <li>TSLA | Buy | 50 shares | $750.00 | $37,500.00 | 10/20/24</li>
+                    <li>AAPL | Sell | 30 shares | $180.00 | $5,400.00 | 10/18/24</li>
+                    <li>AMZN | Buy | 10 shares | $3,250.00 | $32,500.00 | 10/17/24</li>
+                </ul>
+            </div>
+
+            <div class="stock-watch-list">
+                <h2>Stock Watch List</h2>
+                <ul>
+                    <li>APPL | 236.90 | 239.40 | 267.30 | 10/25/24</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Dashboard content-->
+      <div class="dashboard-container">
+        <div class="dashboard-item" id="investment-performance">
+            <h2>Investment Performance</h2>
+            <div class="dropdown-content">
+                <p>Details about investment performance...</p>
+            </div>
+        </div>
+
+        <div class="dashboard-item" id="global-market-trends">
+            <h2>Global Market Trends</h2>
+            <div class="dropdown-content">
+                <p>Global Market Trends..</p>
+            </div>
+        </div>
+
+        <div class="dashboard-item" id="recent-transactions">
+            <h2>Recent Transactions</h2>
+            <div class="dropdown-content">
+                <p>Transactions</p>
+            </div>
+        </div>
+
+        <div class="dashboard-item" id="stock-watch-list">
+            <h2>Stock Watch List</h2>
+            <div class="dropdown-content">
+                <p>Stock Alerts.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
