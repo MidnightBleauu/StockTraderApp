@@ -1,18 +1,24 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var modal = document.getElementById("infoModal");
+    var assistModal = document.getElementById("assistmodal");
+    var closeModal = document.querySelector("#assistmodal .close");
     var helpButton = document.getElementById("helpButton");
-    var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on the button, pop up menu opens
-    helpButton.onclick = function() {
-        modal.style.display = "block";
+    // Show the modal when help button is clicked
+    if (helpButton) {
+        helpButton.onclick = function () {
+            assistModal.style.display = "block";
+        }
     }
-    span.onclick = function() {
-        modal.style.display = "none";
+
+    // Close the modal when close (x) is clicked
+    closeModal.onclick = function () {
+        assistModal.style.display = "none";
     }
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+
+    // Close the modal if the user clicks outside of it
+    window.onclick = function (event) {
+        if (event.target == assistModal) {
+            assistModal.style.display = "none";
         }
     }
 });
