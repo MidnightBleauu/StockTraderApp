@@ -2,11 +2,13 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+
 }
+
 
 body {
     background-color: #c0c8cc;
-    font-family: "American Typewriter", fantasy;
+    font-family: "American Typewriter", fantasy ;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -14,7 +16,7 @@ body {
     margin: 0;
 }
 
-/* Styling for Welcome page */
+/* Styling for Welcome page*/
 .welcome-container {
     display: flex;
     justify-content: center;
@@ -44,6 +46,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%; /
     margin-top: 10px;
 }
 
@@ -58,7 +61,7 @@ body {
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Button effects */
+/* Button effects  */
 .button-container button:hover {
     background-color: #3e6d9b;
     transform: scale(1.05);
@@ -117,6 +120,7 @@ body {
     background-color: #c0c8cc;
     font-family: Arial, sans-serif;
 }
+
 
 /* Dashboard styling */
 .dashboard-main-container {
@@ -245,6 +249,7 @@ input[type="password"] {
     border-bottom: 2px solid #ccc;
     background-color: #fff;
     color: #000;
+    border-radius: 5px; /* Adds rounded corners */
 }
 
 input[type="email"]::placeholder,
@@ -269,10 +274,12 @@ input[type="password"]::placeholder {
     background-color: #3e6d9b;
 }
 
+
 p {
     display: flex;
     justify-content: center;
 
+}
 .top-nav {
     width: 100%;
     background-color: #333;
@@ -297,6 +304,7 @@ p {
     flex: 2;
     display: flex;
     justify-content: center;
+    gap: 30px; /
 }
 
 .nav-right {
@@ -337,6 +345,9 @@ p {
     background-color: #3e6d9b;
 }
 
+
+
+
 /* Search container styling */
 .search-container {
     position: relative;
@@ -360,6 +371,7 @@ p {
     top: 100%;
     left: 0;
     right: 0;
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 0 0 4px 4px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -385,6 +397,7 @@ p {
     background-color: #f0f0f0;
 }
 
+
 /* Main container for the stock details */
 .stock-details-container {
     display: flex;
@@ -399,6 +412,9 @@ p {
     left: 40px;
     width: 20%;
     padding: 20px;
+    border: 2px solid #ccc; /* Light gray border */
+    border-radius: 10px; /* Rounded corners for a nicer appearance */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 /* Styling for the Stock Name */
@@ -434,12 +450,19 @@ p {
     display: flex;
     align-items: center;
     padding: 10px;
+    background-color: #ffffff; /* White background for the chart */
+    border: 3px solid #333; /* Dark gray border to make the chart stand out */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow for emphasis */
     margin-top: -200px;
 }
 
 /* Canvas Chart Styling */
 #stockChart {
+    width: 100%; /* Ensure the chart fills the entire container */
+    height: 400px; /* Set a fixed height for the chart */
 }
+
 
 .purchase-stock-container {
     position: absolute;
@@ -496,4 +519,184 @@ p {
     text-align: center;
     margin-top: 15px;
 }
+    .bottom-container {
+        font-size: 0.8em;
+        position: absolute;
+        bottom: 20px; /* Distance from the bottom of the page, increased to provide more space */
+        left: 5%; /* Centers the rectangle horizontally */
+        right: 5%; /* Centers the rectangle horizontally */
+        width: 90%;
+        padding: 20px;
+        border: 2px solid #000;
+        background-color: #fff;
+        border-radius: 8px;
+        box-sizing: border-box;
+        z-index: 1; /* Make sure it's above background but below floating UI */
+    }
 
+    .column-container {
+        display: flex;
+        justify-content: space-between;
+        height: auto; /* Allow the height to adjust automatically */
+        gap: 10px; /* Adds space between columns */
+    }
+
+    .column {
+        width: 30%;
+        padding: 10px;
+        box-sizing: border-box; /* Include padding in width calculation */
+        overflow-wrap: break-word; /* Ensure text wraps correctly */
+    }
+
+    /* Modal styling */
+
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto; /* 5% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%; /* Set the width to 50% */
+        border-radius: 10px; /* Rounded corners for a nicer look */
+        text-align: left; /* Align text to the left for consistency */
+        box-sizing: border-box; /* Include padding and border in width */
+    }
+
+    .modal-content h2 {
+        border-bottom: black;
+        margin-top: 0;
+        text-align: center; /* Center align the title */
+    }
+
+    .modal-content .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .modal-content .order-details p {
+        line-height: 1.6; /* Space out the lines for readability */
+    }
+
+    .modal-content ul {
+        list-style-type: none; /* Remove bullets */
+        padding: 0;
+        line-height: 1.6; /* Space out the list items */
+    }
+
+    .modal-content ul li {
+        margin-bottom: 8px; /* Add space between items */
+    }
+
+    /* Keeping the button styling consistent */
+
+    .modal-content #confirmOrder {
+        background-color: #3B82F6;
+        color: white;
+        padding: 10px 20px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block;
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .modal-content #confirmOrder:hover {
+        background-color: #2563EB;
+    }
+
+    .modal-content #totalCost {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+
+    .summary-container {
+        display: flex;
+        width: 100%;
+        padding: 10px;
+        flex-direction: column;
+        gap: 5px;
+        border: 3px solid #ffffff;
+        border-radius: 8px;
+    }
+
+
+    /* Header Styling */
+
+    .summary-section h2 {
+        font-size: 20px;
+        padding: 5px;
+        text-align: center;
+        border-bottom: 1px solid #ffffff; /* A thick white border */
+        border-spacing: 10px;
+    }
+
+    /* Styling for List Items */
+
+    .news-container ul,
+    .gainers-container ul,
+    .losers-container ul,
+    .active-tickers-container ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+    }
+
+    .news-container li,
+    .gainers-container li,
+    .losers-container li,
+    .active-tickers-container li {
+        margin-bottom: 10px;
+        line-height: 1.5;
+
+    }
+
+    /* Link Styling */
+
+    .summary-section a {
+        color: #007bff; /* Blue links */
+        text-decoration: underline;
+        text-align: center;
+
+    }
+
+    .summary-section p {
+        margin: 5px 0;
+        line-height: 1.4;
+        color: #333;
+    }
+
+
+#analyticsDataContainer {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 3px solid #333;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+#analyticsDataContainer h2 {
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+}
