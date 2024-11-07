@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Alpha Vantage API Key - (Premium Key, this will be blank before uploaded to github)
-Alpha_Vantage_Key = 'RE2H8GRCGHMPVOMB' # obtain a free key from Alpha Vantage
+Alpha_Vantage_Key = '' # obtain a free key from Alpha Vantage
 
 # Function to get stock data from Alpha Vantage
 def get_stock_data(symbol):
