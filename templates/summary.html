@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Midnight Trade - Summary</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/script.js" defer></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="top-nav">
+        <div class="nav-logo">The Midnight Trade</div>
+        <div class="nav-links">
+            <a href="/dashboard">Accounts</a>
+            <a href="/summary">Summary</a>
+            <a href="/dashboard">Portfolio</a>
+            <a href="/stocks">Stocks</a>
+        </div>
+        <div class="nav-right">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for stocks...">
+                <ul id="suggestion-box" class="suggestion-box"></ul>
+            </div>
+            <a href="/logout" class="logout-button">Log Out</a>
+        </div>
+    </div>
+      <!-- Main Summary Content -->
+    <div class="summary-container">
+        <!-- Market News & Sentiment Section -->
+        <div class="summary-section">
+            <h2>Market News & Sentiment</h2>
+            <div class="news-container">
+                {% if news_sentiment and news_sentiment.get('feed') %}
+                    <ul>
+                        {% for article in news_sentiment['feed'][:2] %}
+                            <li>
+                                <strong>{{ article['title'] }}</strong>
+                                <p>{{ article['summary'] }}</p>
+                                <a href="{{ article['url'] }}" target="_blank">Read more</a>
+                                <p><em>Source: {{ article['source'] }} | Published: {{ article['time_published'] }}</em></p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No market news available at the moment.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Top Gainers Section -->
+        <div class="summary-section">
+            <h2>Top Gainers</h2>
+            <div class="gainers-container">
+                {% if top_gainers_losers and top_gainers_losers.get('top_gainers') %}
+                    <ul>
+                        {% for gainer in top_gainers_losers['top_gainers'][:5] %}
+                            <li>
+                                <strong>{{ gainer['ticker'] }}</strong> - Price: ${{ gainer['price'] }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No top gainers available at the moment.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Top Losers Section -->
+        <div class="summary-section">
+            <h2>Top Losers</h2>
+            <div class="losers-container">
+                {% if top_gainers_losers and top_gainers_losers.get('top_losers') %}
+                    <ul>
+                        {% for loser in top_gainers_losers['top_losers'][:5] %}
+                            <li>
+                                <strong>{{ loser['ticker'] }}</strong> - Price: ${{ loser['price'] }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No top losers available at the moment.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Most Active Tickers Section -->
+        <div class="summary-section">
+            <h2>Most Active Tickers</h2>
+            <div class="active-tickers-container">
+                {% if top_gainers_losers and top_gainers_losers.get('most_active') %}
+                    <ul>
+                        {% for active in top_gainers_losers['most_active'][:5] %}
+                            <li>
+                                <strong>{{ active['ticker'] }}</strong> - Volume: {{ active['volume'] }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No active tickers available at the moment.</p>
+                {% endif %}
+            </div>
+        </div>
+
+</body>
+</html>

@@ -1,54 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.querySelector('#search-input');
     const suggestionBox = document.querySelector('#suggestion-box');
-    let debounceTimeout;
 
-    // Limit API calls (only 25 a day allowed)
-    const debounce = (func, delay) => {
-        return (...args) => {
-            if (debounceTimeout) {
-                clearTimeout(debounceTimeout);
-            }
-            debounceTimeout = setTimeout(() => {
-                func.apply(null, args);
-            }, delay);
-        };
-    };
-
-    // Fetch and display suggestions
+    // Fetches and pulls the suggestions
     const fetchSuggestions = async (query) => {
         try {
-            const response = await fetch(`/search_api?query=${query}`);
-            const data = await response.json();
+            // Fetchs from the correct location from the stock.py
+            const response = await fetch(`http://localhost:5001/search_api?query=${query}`);
+            if (response.ok) {
+                const data = await response.json();
 
-            // this will clear suggestions
-            suggestionBox.innerHTML = '';
+                // clears any old suggestions
+                suggestionBox.innerHTML = '';
 
-            if (data.length > 0) {
-                suggestionBox.style.display = 'block';
-                data.forEach(result => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `${result['1. symbol']} - ${result['2. name']}`;
-                    suggestionBox.appendChild(listItem);
+                if (data.bestMatches && data.bestMatches.length > 0) {
+                    suggestionBox.style.display = 'block';
+                    data.bestMatches.forEach(result => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${result['1. symbol']} - ${result['2. name']}`;
+                        listItem.classList.add('suggestion-item');
+                        suggestionBox.appendChild(listItem);
 
-                    // Event listener for clicking and then to display suggesutions
-                    listItem.addEventListener('click', () => {
-                        searchInput.value = result['1. symbol'];
-                        suggestionBox.innerHTML = ''; // Clear suggestions
-                        suggestionBox.style.display = 'none';
+                        // Event listener for clicking the suggesitons
+                        listItem.addEventListener('click', () => {
+                            // Redirects to teh stock page
+                            window.location.href = `/stocks/${result['1. symbol']}`;
+                        });
                     });
-                });
+                } else {
+                    suggestionBox.style.display = 'none';
+                }
             } else {
-                suggestionBox.style.display = 'none';
+                console.error("Error fetching search results:", response.statusText);
             }
         } catch (error) {
             console.error("Error fetching search results:", error);
         }
     };
 
-
-    searchInput.addEventListener('input', debounce(function () {
-        const query = this.value.trim();
+    // Fetches the suggestins
+    searchInput.addEventListener('input', function () {
+        const query = this.value ? this.value.trim() : '';
 
         if (query.length > 1) {
             fetchSuggestions(query);
@@ -56,8 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
             suggestionBox.innerHTML = '';
             suggestionBox.style.display = 'none';
         }
-    }, 300));
-    
+    });
+
+    // Hides the box
     document.addEventListener('click', (e) => {
         if (!searchInput.contains(e.target) && !suggestionBox.contains(e.target)) {
             suggestionBox.style.display = 'none';

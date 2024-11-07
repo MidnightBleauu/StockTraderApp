@@ -6,14 +6,15 @@
     <title>The Midnight Trade - Dashboard</title>
     <link rel="stylesheet" href="/static/styles.css">
     <script src="/static/script.js" defer></script>
+    <script src="/static/help.js" defer> </script>
 </head>
 <body>
     <div class="top-nav">
         <div class="nav-logo">The Midnight Trade</div>
         <div class="nav-links">
-           <a href="/accounts">Accounts</a>
-            <a href="/dashboard">Summary</a>
-            <a href="/portfolio">Portfolio</a>
+            <a href="/dashboard">Accounts</a>
+            <a href="/summary">Summary</a>
+            <a href="/dashboard">Portfolio</a>
             <a href="/stocks">Stocks</a>
         </div>
         <div class="nav-right">
@@ -21,9 +22,29 @@
                 <input type="text" id="search-input" placeholder="Search for stocks...">
                 <ul id="suggestion-box" class="suggestion-box"></ul>
             </div>
+            <button id="helpButton" class="help-button">Help</button>
             <a href="/logout" class="logout-button">Log Out</a>
         </div>
     </div>
+
+    <div id="assistmodal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>The Midnight Trade</h2>
+        <h3>Get started with The Midnight Trade</h3>
+        <h2>Here a brief explanation:</h2>
+        <ol>
+            <li>Watch List Stock - Add this stock to your personal watchlist to monitor price changes easily.</li>
+            <li>Alerts - Set a price alert for this stock and get notified when it hits your target price.</li>
+            <li>Quantity - Enter the number of shares you want to buy or sell.</li>
+            <li>Order Type - Choose the type of order—market, limit, or stop orders.</li>
+            <li>Price - Enter the target price for your trade, applicable to limit orders.</li>
+            <li>Review Order - Review the details of your order before submitting it.</li>
+        </ol>
+    </div>
+    </div>
+
+
      <div class="dashboard-main-container">
         <div class="top-summary">
             <div class="summary-item">Portfolio Balance: $100,000,000</div>
@@ -34,31 +55,55 @@
             <div class="summary-item">Gains/Loss: +$25,000</div>
         </div>
 
-        <div class="main-content">
-            <div class="left-panel">
-                <h2>Investment Performance</h2>
-                <div class="investment-performance">
-                    <p>Chart Placeholder</p>
-                </div>
-            </div>
-
-            <div class="right-panel">
-                <h2>Global Market Trends</h2>
-                <div class="global-market-data">
-                    <ul>
-                        <li>DOW: 42,931.60 -334.31</li>
-                        <li>S&P 500: 5,853.98 -10.69</li>
-                        <li>NASDAQ: 18,540.00 +50.45</li>
-                        <li>Gold: 2735.00 -3.60</li>
-                        <li>Oil: 70.46 -0.10</li>
-                    </ul>
-                </div>
+         <div id="infoModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>The Midnight Trade</h2>
+                <h3>More Information (P4.3)</h3>
+                <ol>
+                    <li>Watch List Stock - Add this stock to your personal watchlist to monitor price changes easily.</li>
+                    <li>Alerts - Set a price alert for this stock and get notified when it hits your target price.</li>
+                    <li>Quantity - Enter the number of shares you want to buy or sell.</li>
+                    <li>Order Type - Choose the type of order—market, limit, or stop orders.</li>
+                    <li>Price - Enter the target price for your trade, applicable to limit orders.</li>
+                    <li>Review Order - Review the details of your order before submitting it.</li>
+                </ol>
             </div>
         </div>
 
+         <div class="main-content">
+        <div class="left-panel dashboard-box">
+            <div class="dash-header">
+                <h2>Investment Performance</h2>
+            </div>
+            <div class="investment-performance">
+                  <li>TSLA | Buy | 50 shares | $750.00 | $37,500.00 | 10/20/24</li>
+                    <li>AAPL | Sell | 30 shares | $180.00 | $5,400.00 | 10/18/24</li>
+                    <li>AMZN | Buy | 10 shares | $3,250.00 | $32,500.00 | 10/17/24</li>
+            </div>
+        </div>
+
+        <div class="right-panel dashboard-box">
+            <div class="dash-header">
+                <h2>Global Market Trends</h2>
+            </div>
+            <div class="global-market-data">
+                <ul>
+                    <li>DOW: 42,931.60 -334.31</li>
+                    <li>S&P 500: 5,853.98 -10.69</li>
+                    <li>NASDAQ: 18,540.00 +50.45</li>
+                    <li>Gold: 2735.00 -3.60</li>
+                    <li>Oil: 70.46 -0.10</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
         <div class="bottom-content">
-            <div class="recent-transactions">
+            <div class="recent-transactions dashboard-box">
+                <div class="dash-header">
                 <h2>Recent Transactions</h2>
+                </div>
                 <ul>
                     <li>TSLA | Buy | 50 shares | $750.00 | $37,500.00 | 10/20/24</li>
                     <li>AAPL | Sell | 30 shares | $180.00 | $5,400.00 | 10/18/24</li>
@@ -66,43 +111,33 @@
                 </ul>
             </div>
 
-            <div class="stock-watch-list">
-                <h2>Stock Watch List</h2>
-                <ul>
-                    <li>APPL | 236.90 | 239.40 | 267.30 | 10/25/24</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- Dashboard content-->
-      <div class="dashboard-container">
-        <div class="dashboard-item" id="investment-performance">
-            <h2>Investment Performance</h2>
-            <div class="dropdown-content">
-                <p>Details about investment performance...</p>
-            </div>
-        </div>
-
-        <div class="dashboard-item" id="global-market-trends">
-            <h2>Global Market Trends</h2>
-            <div class="dropdown-content">
-                <p>Global Market Trends..</p>
-            </div>
-        </div>
-
-        <div class="dashboard-item" id="recent-transactions">
-            <h2>Recent Transactions</h2>
-            <div class="dropdown-content">
-                <p>Transactions</p>
-            </div>
-        </div>
-
-        <div class="dashboard-item" id="stock-watch-list">
+            <div class="stock-watch-list dashboard-box">
+        <div class="dash-header">
             <h2>Stock Watch List</h2>
-            <div class="dropdown-content">
-                <p>Stock Alerts.</p>
+            <button id="addWatchlistButton" class="watchlist-button">Watchlist Stock</button>
+        </div>
+        <ul>
+            <li>APPL | 236.90 | 239.40 | 267.30 | 10/25/24</li>
+        </ul>
+        </div>
+
+        <div id="watchlistModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Select Stock to Watchlist</h3>
+                <label for="stockTickerSelect">Stock Ticker:</label>
+                <select id="stockTickerSelect">
+                    <option value="AAPL">Apple (AAPL)</option>
+                    <option value="MSFT">Microsoft (MSFT)</option>
+                    <option value="GOOGL">Alphabet (GOOGL)</option>
+                    <option value="TSLA">Tesla (TSLA)</option>
+                    <option value="AMZN">Amazon (AMZN)</option>
+                </select>
+                <button id="addStockToWatchlist" class="add-button">Add to Watchlist</button>
             </div>
         </div>
     </div>
+         <script src="/static/watchlist.js"> </script>
+     </div>
 </body>
 </html>
