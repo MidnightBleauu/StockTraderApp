@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Midnight Trade - Dashboard</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/dashboard.css">
     <script src="/static/script.js" defer></script>
-    <script src="/static/help.js" defer> </script>
+    <script src="/static/help.js" defer></script>
 </head>
+
 <body>
+    <!-- Top Navigation Bar -->
     <div class="top-nav">
         <div class="nav-logo">The Midnight Trade</div>
         <div class="nav-links">
-            <a href="/dashboard">Accounts</a>
+            <a href="/account_settings">Accounts</a>
             <a href="/summary">Summary</a>
             <a href="/dashboard">Portfolio</a>
             <a href="/stocks">Stocks</a>
@@ -27,6 +30,7 @@
         </div>
     </div>
 
+    <!-- Help Modal -->
     <div id="assistmodal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -34,78 +38,45 @@
             <h3>Help Guide</h3>
             <p>Here's a brief guide to get you started.</p>
 
-            <h4>Accounts Tab:</h4>
-            <ul>
-                <li>Click on 'Accounts' to view detailed information about your account, including balance, recent transactions, and available funds.</li>
-                <li>After reviewing your account details, you can navigate back to the dashboard by clicking 'Dashboard' in the top navigation bar.</li>
-            </ul>
-
-            <h4>Portfolio Summary Tab:</h4>
-            <ul>
-                <li>To view an overview of your investments, click on 'Portfolio Summary'. This will show you key information, such as your portfolio's total value, daily changes, and performance.</li>
-                <li>Once you're done reviewing, you can click on 'Dashboard' to return to the main overview.</li>
-            </ul>
-
-            <h4>Stock Portfolio Tab:</h4>
-            <ul>
-                <li>To access your stock portfolio, click on 'Stock Portfolio'. Here, you will see a list of stocks you currently hold, their prices, and performance over time.</li>
-                <li>Use the 'Back' button on the top navigation bar to return to the previous screen or select 'Dashboard' to go back to the main page.</li>
-            </ul>
-
-            <h4>Navigate to Stock Page:</h4>
-            <ul>
-                <li>To view a specific stock's detailed performance, click on 'Stocks' in the top navigation bar. From here, search for the stock ticker in the search bar and hit 'Enter'.</li>
-                <li>You will then be directed to the stock page, where you can view real-time data, set price alerts, or execute a trade.</li>
-            </ul>
-
-            <h4>Confirmation Messages:</h4>
-            <ul>
-                <li>After completing actions like setting a price alert or executing a trade, you will see confirmation messages like "Price Alert Set Successfully" or "Trade Executed Successfully", ensuring that each step is completed and users are aware of the outcome.</li>
-            </ul>
+            <!-- Help Content Here -->
 
             <p>Anytime you'd like to see this menu, click the "Help" button in your dashboard.</p>
         </div>
     </div>
 
-
-     <div class="dashboard-main-container">
+    <!-- Dashboard Main Container -->
+    <div class="dashboard-main-container">
         <div class="top-summary">
-            <div class="summary-item">Portfolio Balance: $100,000,000</div>
-            <div class="summary-item">Available Funds: $156,353,000</div>
-            <div class="summary-item">Cash + Investments: $90,500,000</div>
-            <div class="summary-item">Market Value: $120,000,000</div>
-            <div class="summary-item">Day Change: +$12,500</div>
-            <div class="summary-item">Gains/Loss: +$25,000</div>
+            <div class="summary-item">Account Number: <span id="accountNumber">{{ account_number }}</span></div>
+            <div id="portfolioBalance" class="summary-item">Portfolio Balance: $<span id="portfolioBalanceValue">{{ cash_balance }}</span></div>
+            <div class="summary-item">Available Funds: $<span id="availableFundsValue">{{ available_funds }}</span></div>
+            <div class="summary-item">Cash + Investments: $<span id="totalValue">{{ total_value }}</span></div>
+            <div class="summary-item">Market Value: $<span id="marketValue">{{ market_value }}</span></div>
+            <div class="summary-item">Day Change: $<span id="dayChange">{{ day_change }}</span></div>
+            <div class="summary-item">Gains/Loss: $<span id="gainsLoss">{{ gains_loss }}</span></div>
         </div>
+    </div>
 
-         <div id="infoModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>The Midnight Trade</h2>
-                <h3>More Information (P4.3)</h3>
-                <ol>
-                    <li>Watch List Stock - Add this stock to your personal watchlist to monitor price changes easily.</li>
-                    <li>Alerts - Set a price alert for this stock and get notified when it hits your target price.</li>
-                    <li>Quantity - Enter the number of shares you want to buy or sell.</li>
-                    <li>Order Type - Choose the type of order—market, limit, or stop orders.</li>
-                    <li>Price - Enter the target price for your trade, applicable to limit orders.</li>
-                    <li>Review Order - Review the details of your order before submitting it.</li>
-                </ol>
-            </div>
-        </div>
-
-         <div class="main-content">
+    <!-- Investment Performance -->
+    <div class="main-content">
         <div class="left-panel dashboard-box">
             <div class="dash-header">
                 <h2>Investment Performance</h2>
             </div>
             <div class="investment-performance">
-                  <li>TSLA | Buy | 50 shares | $750.00 | $37,500.00 | 10/20/24</li>
-                    <li>AAPL | Sell | 30 shares | $180.00 | $5,400.00 | 10/18/24</li>
-                    <li>AMZN | Buy | 10 shares | $3,250.00 | $32,500.00 | 10/17/24</li>
+                {% if holdings %}
+                    <ul>
+                        {% for holding in holdings %}
+                            <li>{{ holding.stock_symbol }} | {{ holding.action }} | {{ holding.quantity }} shares | ${{ holding.price }} | ${{ holding.total_value }} | {{ holding.date }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No investments currently held.</p>
+                {% endif %}
             </div>
         </div>
 
+        <!-- Global Market Trends -->
         <div class="right-panel dashboard-box">
             <div class="dash-header">
                 <h2>Global Market Trends</h2>
@@ -122,45 +93,97 @@
         </div>
     </div>
 
+    <!-- Recent Transactions -->
         <div class="bottom-content">
             <div class="recent-transactions dashboard-box">
                 <div class="dash-header">
-                <h2>Recent Transactions</h2>
+                    <h2>Recent Transactions</h2>
                 </div>
-                <ul>
-                    <li>TSLA | Buy | 50 shares | $750.00 | $37,500.00 | 10/20/24</li>
-                    <li>AAPL | Sell | 30 shares | $180.00 | $5,400.00 | 10/18/24</li>
-                    <li>AMZN | Buy | 10 shares | $3,250.00 | $32,500.00 | 10/17/24</li>
-                </ul>
-            </div>
-
-            <div class="stock-watch-list dashboard-box">
-        <div class="dash-header">
-            <h2>Stock Watch List</h2>
-            <button id="addWatchlistButton" class="watchlist-button">Watchlist Stock</button>
-        </div>
-        <ul>
-            <li>APPL | 236.90 | 239.40 | 267.30 | 10/25/24</li>
+                <ul id="transaction-list">
+            {% if transactions %}
+                {% for transaction in transactions %}
+                    <li>
+                        Stock Symbol: {{ transaction.stock_symbol }} |
+                        Action: {{ transaction.action }} |
+                        Quantity: {{ transaction.quantity }} |
+                        Price: ${{ "%.2f"|format(transaction.price) }} |
+                        Total Value: ${{ "%.2f"|format(transaction.total_value) }} |
+                        Date: {{ transaction.date }}
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li>No recent transactions available.</li>
+            {% endif %}
         </ul>
         </div>
 
+        <!-- Stock Watch List -->
+        <div class="stock-watch-list dashboard-box">
+            <div class="dash-header">
+                <h2>Stock Watch List</h2>
+                <button id="addWatchlistButton" class="watchlist-button">Add Stock to Watchlist</button>
+            </div>
+            <ul id="watchlist-items">
+                {% if watchlist and watchlist|length > 0 %}
+                    {% for stock in watchlist %}
+                        <li class="watchlist-item">
+                            <div class="watchlist-details">
+                                <span class="stock-name">{{ stock.symbol }}</span>
+                                <span class="stock-current-price">| Current Price: ${{ stock.current_price }}</span>
+                                <span class="stock-target-price">| Target Price: ${{ stock.target_price }}</span>
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li>No stocks in your watchlist.</li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <!-- Watchlist Modal -->
         <div id="watchlistModal" class="modal">
             <div class="modal-content">
-                <span class="close">&times;</span>
-                <h3>Select Stock to Watchlist</h3>
-                <label for="stockTickerSelect">Stock Ticker:</label>
-                <select id="stockTickerSelect">
-                    <option value="AAPL">Apple (AAPL)</option>
-                    <option value="MSFT">Microsoft (MSFT)</option>
-                    <option value="GOOGL">Alphabet (GOOGL)</option>
-                    <option value="TSLA">Tesla (TSLA)</option>
-                    <option value="AMZN">Amazon (AMZN)</option>
-                </select>
+                <span id="closeModal" class="close">&times;</span>
+                <h3>Select Stock to Add to Watchlist</h3>
+
+                <div class="input-group">
+                    <label for="stockTickerInput">Stock Ticker:</label>
+                    <input type="text" id="stockTickerInput" placeholder="Search for a stock...">
+                    <ul id="suggestion-box" class="suggestion-box"></ul>
+                </div>
+
+                <div class="input-group">
+                    <label for="currentPriceInput">Current Price:</label>
+                    <input type="text" id="currentPriceInput" disabled placeholder="N/A">
+                </div>
+
+                <div class="input-group">
+                    <label for="alertPrice">Target Alert Price:</label>
+                    <input type="number" id="alertPrice" placeholder="Enter target price">
+                </div>
+
+                <div class="input-group">
+                    <label for="alertSetDate">Alert Set Date:</label>
+                    <input type="date" id="alertSetDate">
+                </div>
+
+                <div class="input-group">
+                    <label for="alertDuration">Alert Duration (in days):</label>
+                    <input type="number" id="alertDuration" placeholder="Enter duration in days">
+                </div>
+
                 <button id="addStockToWatchlist" class="add-button">Add to Watchlist</button>
             </div>
         </div>
+
     </div>
-         <script src="/static/watchlist.js"> </script>
-     </div>
+
+    <script>
+        const userId = '{{ user_id }}';
+    </script>
+    <script src="/static/dashboard.js" defer></script>
+    <script src="/static/watchlist.js" defer></script>
+
 </body>
+
 </html>

@@ -1,0 +1,174 @@
+/* Resetting general element styles */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #c0c8cc;
+    font-family: "sans-serif";  /* Matching the font with the rest of the app */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+/* Styling for navigation */
+.top-nav {
+    width: 100%;
+    background-color: #333;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.nav-logo {
+    flex: 1;
+}
+
+.nav-links {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.nav-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.nav-links a, .logout-button {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, .logout-button:hover {
+    color: #bbb;
+}
+
+/* Main container for account settings page */
+.accounts-main-container {
+    margin-top: 100px;
+    width: 80%;
+    max-width: 800px;
+    padding: 30px;
+    background-color: #4a4a4a; /* Grey backdrop for the main form container */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.accounts-main-container h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #fff; /* White text to stand out on dark backdrop */
+}
+
+/* Form container styling */
+.update-info-container, .add-funds-container {
+    margin-bottom: 2rem;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f0f0f0; /* Light grey background for the form */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.update-info-container h3, .add-funds-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #4e8fc7;
+}
+
+/* Input fields styling */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
+    border-color: #4e8fc7;
+    outline: none;
+}
+
+/* Labels styling */
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+}
+
+/* Buttons styling */
+button.update-button, button.funds-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4e8fc7;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 15px;
+}
+
+button.update-button:hover, button.funds-button:hover {
+    background-color: #3e6d9b;
+    transform: scale(1.05);
+}
+
+/* Adding responsive styles for mobile view */
+@media (max-width: 768px) {
+    .accounts-main-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .update-info-container, .add-funds-container {
+        padding: 15px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    input[type="number"] {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    button.update-button, button.funds-button {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+}

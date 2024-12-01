@@ -1,3 +1,11 @@
+
+<!--
+Author: Pramit Patel
+Date: 11/30/24
+Description: Stock Details that displaying information about a specific stock, including current price, sector,
+and industry details. Users can also make a purchase or sell decision on this page.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +21,7 @@
     <div class="top-nav">
         <div class="nav-logo">The Midnight Trade</div>
         <div class="nav-links">
-         <a href="/dashboard">Accounts</a>
+            <a href="/account_settings">Accounts</a>
             <a href="/summary">Summary</a>
             <a href="/dashboard">Portfolio</a>
             <a href="/stocks">Stocks</a>
@@ -30,7 +38,7 @@
     <div class="stock-details-container">
         <div class="stock-info">
             <h1 id="stockName">{{ stock['Name'] }}</h1>
-            <p id="stockSymbol">Symbol: {{ stock['Symbol'] }}</p>
+            <p id="stock_symbol">Symbol: {{ stock['Symbol'] }}</p>
             <p id="stockSector">Sector: {{ stock['Sector'] }}</p>
             <p id="stockIndustry">Industry: {{ stock['Industry'] }}</p>
             <p id="stockMarketCap">Market Capitalization: ${{ stock['MarketCapitalization'] }}</p>
@@ -74,7 +82,9 @@
     </div>
 </div>
         <div class="purchase-stock-container">
-            <h3>Purchase Stock</h3>
+            <h3>Purchase Stock: {{ stock['Name'] }}</h3>
+            <p>Stock: {{ stock['Symbol'] }}</p>
+            <input type="hidden" id="stockSymbol" value="{{ stock['Symbol'] }}">
             <label for="action">Action:</label>
             <select id="action">
                 <option value="buy">Buy</option>
@@ -166,7 +176,5 @@
 
 
 </div>
-
-
 </body>
 </html>

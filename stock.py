@@ -1,3 +1,8 @@
+# Author: Pramit Patel
+# Date: 11/30/24
+# Description: Handles the API requests for the stocks data pulled using ALPHA Vantage API, and allows for stock ticker
+# stock search, earnings report, and other financial data
+
 from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 import requests
