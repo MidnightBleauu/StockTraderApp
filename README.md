@@ -40,4 +40,3 @@ This app uses a modular microservices architecture. Each microservice runs indep
   - `Flask`: For building REST APIs (Python).
   - `Express.js`: For building REST APIs (Node.js).
   - `SQLAlchemy`: For database modeling.
-  - `pymongo`: For MongoDB interactions.
